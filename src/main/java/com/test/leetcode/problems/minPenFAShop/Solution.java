@@ -1,8 +1,6 @@
 //https://leetcode.com/problems/minimum-penalty-for-a-shop/
 package com.test.leetcode.problems.minPenFAShop;
 
-import java.util.stream.IntStream;
-
 public class Solution {
 
     public static void main(String[] args) {
@@ -17,7 +15,11 @@ public class Solution {
     }
 
     public int bestClosingTime(String customers) {
-        int totalYCountInRight = (int) (IntStream.range(0, customers.length()).filter(x -> customers.charAt(x)=='Y')).count();
+        int totalYCountInRight = 0;
+        for (int i = 0; i < customers.length(); i++) {
+            if (customers.charAt(i) == 'Y')
+                totalYCountInRight++;
+        }
         int totalNCountInLeft = 0;
         int minPenalty = totalYCountInRight;
         int closingIndex = 0;
