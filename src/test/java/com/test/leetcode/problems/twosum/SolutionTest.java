@@ -1,32 +1,42 @@
 package com.test.leetcode.problems.twosum;
 
-import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
+import java.util.Collection;
 
+@RunWith(Parameterized.class)
 public class SolutionTest extends TestCase {
+    private final Solution solution = new Solution();
+    @Parameterized.Parameter
+    public int[] inputArray;
+    @Parameterized.Parameter(1)
+    public int target;
+    @Parameterized.Parameter(2)
+    public int[] expectedResult;
 
-    private Solution solution;
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
 
-    public SolutionTest(String testName) {
-        super(testName);
+                {new int[]{1, 5, 2, 6}, 11, new int[]{1, 3}},
+                {new int[]{2, 7, 11, 15}, 9, new int[]{0, 1}},
+                {new int[]{3, 2, 4}, 6, new int[]{1, 2}},
+                {new int[]{3, 3}, 6, new int[]{0, 1}}
+        });
     }
 
     public static Test suite() {
         return new TestSuite(SolutionTest.class);
     }
 
-    public void setUp() throws Exception {
-        solution = new Solution();
-    }
-
+    @org.junit.Test
     public void testTwoSum() {
-        int[] nums = new int[]{1, 5, 2, 6};
-        int target = 11;
-        int[] expectedResult = new int[]{1, 3};
-        Assert.assertTrue(Arrays.equals(expectedResult, solution.twoSum(nums, target)));
+        Assert.assertArrayEquals(expectedResult, solution.twoSum(inputArray, target));
     }
 }
