@@ -15,7 +15,6 @@ class SolutionSpec extends Specification {
         def actualResult = solution.twoSum(nums as int[], target)
         then:
         assert expectedResult.containsAll(actualResult)
-//        assert actualResult.containsAll(expectedResult)
         where:
         nums           | target | expectedResult
         [1, 5, 2, 6]   | 11     | [1, 3]
