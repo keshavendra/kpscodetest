@@ -1,4 +1,4 @@
-import com.test.App
+import com.testds.App
 import spock.lang.Specification
 
 class AppSpec extends Specification {
