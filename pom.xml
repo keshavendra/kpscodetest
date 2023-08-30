@@ -90,6 +90,9 @@
                         </goals>
                         <configuration>
                             <propertyName>jaCoCoArgLine</propertyName>
+                            <excludes>
+                                <exclude>**/utils/**/*</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                     <execution>
