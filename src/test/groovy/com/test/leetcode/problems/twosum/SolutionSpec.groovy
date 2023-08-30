@@ -6,7 +6,7 @@ class SolutionSpec extends Specification {
     Solution solution
 
     def setup() {
-        solution = new Solution();
+        solution = new Solution()
     }
 
     def "test different inputs and respectively expected results"() {
