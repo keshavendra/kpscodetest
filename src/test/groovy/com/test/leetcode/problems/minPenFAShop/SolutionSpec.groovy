@@ -9,7 +9,7 @@ class SolutionSpec extends Specification {
         solution = new Solution()
     }
 
-    def "test different input and expected result"() {
+    def "test different inputs and respectively expected results"() {
         when:
         def actualResult = solution.bestClosingTime(inputString)
         then:
