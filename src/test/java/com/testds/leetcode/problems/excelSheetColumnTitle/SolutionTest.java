@@ -1,6 +1,7 @@
 package com.testds.leetcode.problems.excelSheetColumnTitle;
 
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class SolutionTest {
+public class SolutionTest extends TestCase {
 
     private final Solution solution = new Solution();
 
