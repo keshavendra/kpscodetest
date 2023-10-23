@@ -2,6 +2,7 @@ package com.testds.leetcode.problems.designMyHashMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Solution {
 
@@ -29,16 +30,13 @@ public class Solution {
                     myHashMap = new MyHashMap();
                     break;
                 case "put":
-                    assert myHashMap != null;
-                    myHashMap.put(values.get(0), values.get(1));
+                    Objects.requireNonNull(myHashMap).put(values.get(0), values.get(1));
                     break;
                 case "remove":
-                    assert myHashMap != null;
-                    myHashMap.remove(values.get(0));
+                    Objects.requireNonNull(myHashMap).remove(values.get(0));
                     break;
                 case "get":
-                    assert myHashMap != null;
-                    result = myHashMap.get(values.get(0));
+                    result = Objects.requireNonNull(myHashMap).get(values.get(0));
             }
             resultList.add(result);
         }

@@ -18,5 +18,6 @@ class SolutionSpec extends Specification {
         s             | expectedResult
         "leet**cod*e" | "lecoe"
         "erase*****"  | ""
+        "era*****"    | ""
     }
 }
