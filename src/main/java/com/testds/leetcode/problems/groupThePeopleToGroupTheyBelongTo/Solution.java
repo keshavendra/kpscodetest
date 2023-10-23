@@ -3,8 +3,8 @@ package com.testds.leetcode.problems.groupThePeopleToGroupTheyBelongTo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 public class Solution {
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
@@ -25,10 +25,11 @@ public class Solution {
             }
             lastGroup.add(person);
         }
-        return mapListSizeToListOfLists
-                .entrySet()
-                .stream()
-                .flatMap(x -> x.getValue().stream())
-                .collect(Collectors.toList());
+        List<List<Integer>> list = new ArrayList<>();
+        for (Map.Entry<Integer, ArrayList<ArrayList<Integer>>> x : mapListSizeToListOfLists
+                .entrySet()) {
+            list.addAll(x.getValue());
+        }
+        return list;
     }
 }
