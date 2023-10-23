@@ -1,5 +1,8 @@
 package com.testds.leetcode.utils;
 
+import com.testds.utils.annotation.Generated;
+
+@Generated
 public class TreeNode {
     public int val;
     public TreeNode left;

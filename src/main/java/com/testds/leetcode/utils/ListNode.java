@@ -1,8 +1,11 @@
 package com.testds.leetcode.utils;
 
+import com.testds.utils.annotation.Generated;
+
 import java.util.LinkedList;
 import java.util.List;
 
+@Generated
 public class ListNode {
     public int val;
     public ListNode next;
