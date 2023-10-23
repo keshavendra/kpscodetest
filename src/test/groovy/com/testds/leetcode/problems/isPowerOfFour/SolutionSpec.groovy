@@ -20,5 +20,6 @@ class SolutionSpec extends Specification {
         5  | false
         1  | true
         8  | false
+        -1 | false
     }
 }
