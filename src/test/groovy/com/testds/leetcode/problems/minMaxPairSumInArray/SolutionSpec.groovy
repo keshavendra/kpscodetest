@@ -19,4 +19,15 @@ class SolutionSpec extends Specification {
         [3, 5, 2, 3]       | 7
         [3, 5, 4, 2, 4, 6] | 8
     }
+
+    def "Test Minimum Maximum Pair Sum In Array1"() {
+        when:
+        def actualResult = solution.minPairSum1(nums as int[])
+        then:
+        expectedResult == actualResult
+        where:
+        nums               | expectedResult
+        [3, 5, 2, 3]       | 7
+        [3, 5, 4, 2, 4, 6] | 8
+    }
 }

@@ -40,4 +40,10 @@ public class SolutionTest extends TestCase {
         assert expectedResult == actualResult;
     }
 
+    @org.junit.Test
+    public void testMinMaxPairSumInArray1() {
+        int actualResult = solution.minPairSum1(nums);
+        assert expectedResult == actualResult;
+    }
+
 }

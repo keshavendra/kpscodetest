@@ -24,7 +24,8 @@ public class SolutionTest extends TestCase {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"leet**cod*e", "lecoe"},
-                {"erase*****", ""}
+                {"erase*****", ""},
+                {"era*****", ""}
         });
     }
 
