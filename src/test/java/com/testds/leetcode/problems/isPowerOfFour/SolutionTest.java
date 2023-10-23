@@ -26,7 +26,8 @@ public class SolutionTest extends TestCase {
                 {16, true},
                 {5, false},
                 {1, true},
-                {8, false}
+                {8, false},
+                {-1, false}
         });
     }
 
