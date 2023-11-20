@@ -7,13 +7,10 @@ public class Solution {
     public int reductionOperations(int[] nums) {
         Arrays.sort(nums);
         int numOfOperations = 0;
-        int min = nums[0];
         for (int i = nums.length - 1; i > 0; i--) {
-            int max = nums[i];
-            if (max == min)
+            if (nums[i] == nums[0])
                 break;
-            int secondMax = nums[i - 1];
-            if (max == secondMax)
+            if (nums[i] == nums[i - 1])
                 continue;
             numOfOperations += (nums.length - i);
         }
