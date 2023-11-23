@@ -3,10 +3,10 @@ package com.testds.leetcode.problems.missingNumber
 import spock.lang.Specification
 
 class SolutionSpec extends Specification {
-    SolutionTest solution
+    Solution solution
 
     def setup() {
-        solution = new SolutionTest()
+        solution = new Solution()
     }
 
     def "Test MissingNumber"() {
