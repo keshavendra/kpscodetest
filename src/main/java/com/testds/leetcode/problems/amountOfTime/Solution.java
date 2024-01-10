@@ -3,73 +3,34 @@ package com.testds.leetcode.problems.amountOfTime;
 
 import com.testds.leetcode.utils.TreeNode;
 
-import java.util.*;
-
 public class Solution {
+    private int maxDistance = 0;
+
     public int amountOfTime(TreeNode root, int start) {
-        Map<Integer, Set<Integer>> neighboursMap = createAdjacencyMap(root);
-        return findMaxDistanceNode(neighboursMap, start);
+        traverse(root, start);
+        return maxDistance;
     }
 
-    private int findMaxDistanceNode(Map<Integer, Set<Integer>> neighboursMap, int start) {
-        int distance = 0;
-        if (neighboursMap.containsKey(start) && neighboursMap.size() > 1) {
-            Queue<Integer> neighbours = new LinkedList<>(neighboursMap.remove(start));
-            neighbours.add(null);
-            List<Integer> nextNeighbours = new ArrayList<>();
-            while (!neighbours.isEmpty()) {
-                Integer num = neighbours.poll();
-                if (num == null) {
-                    distance++;
-                    if (nextNeighbours.isEmpty()) {
-                        break;
-                    } else {
-                        neighbours.addAll(nextNeighbours);
-                        neighbours.add(null);
-                        nextNeighbours=new ArrayList<>();
-                    }
-                } else {
-                    if (neighboursMap.containsKey(num)) {
-                        for (Integer in : neighboursMap.get(num)) {
-                            if (neighboursMap.containsKey(in))
-                                nextNeighbours.add(in);
-                        }
-                        neighboursMap.remove(num);
-                    }
-                }
-            }
+    public int traverse(TreeNode root, int start) {
+        int depth = 0;
+        if (root == null) {
+            return depth;
         }
-        return distance;
-    }
 
-    private Map<Integer, Set<Integer>> createAdjacencyMap(TreeNode node) {
-        Map<Integer, Set<Integer>> adjacencyMap = new HashMap<>();
-        if (node != null) {
-            adjacencyMap.put(node.val, new HashSet<>());
+        int leftDepth = traverse(root.left, start);
+        int rightDepth = traverse(root.right, start);
+
+        if (root.val == start) {
+            maxDistance = Math.max(leftDepth, rightDepth);
+            depth = -1;
+        } else if (leftDepth >= 0 && rightDepth >= 0) {
+            depth = Math.max(leftDepth, rightDepth) + 1;
+        } else {
+            int distance = Math.abs(leftDepth) + Math.abs(rightDepth);
+            maxDistance = Math.max(maxDistance, distance);
+            depth = Math.min(leftDepth, rightDepth) - 1;
         }
-        //creating queue for BFS
-        Queue<TreeNode> nodeQueue = new LinkedList<>();
-        nodeQueue.add(node);
-        while (!nodeQueue.isEmpty()) {
-            node = nodeQueue.poll();
-            if (!adjacencyMap.containsKey(node.val)) {
-                adjacencyMap.put(node.val, new HashSet<>());
-            }
-            if (node.left != null) {
-                adjacencyMap.get(node.val).add(node.left.val);
-                if (!adjacencyMap.containsKey(node.left.val))
-                    adjacencyMap.put(node.left.val, new HashSet<>());
-                adjacencyMap.get(node.left.val).add(node.val);
-                nodeQueue.add(node.left);
-            }
-            if (node.right != null) {
-                adjacencyMap.get(node.val).add(node.right.val);
-                if (!adjacencyMap.containsKey(node.right.val))
-                    adjacencyMap.put(node.right.val, new HashSet<>());
-                adjacencyMap.get(node.right.val).add(node.val);
-                nodeQueue.add(node.right);
-            }
-        }
-        return adjacencyMap;
+
+        return depth;
     }
 }
