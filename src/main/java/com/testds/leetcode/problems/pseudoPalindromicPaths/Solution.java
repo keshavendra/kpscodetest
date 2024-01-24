@@ -6,13 +6,15 @@ import com.testds.leetcode.utils.TreeNode;
 public class Solution {
 
     private int palindromicPaths = 0;
+    private int[] frequency;
 
     public int pseudoPalindromicPaths(TreeNode root) {
-        calculatePalindromPaths(root, new int[10]);
+        frequency = new int[10];
+        calculatePalindromPaths(root);
         return palindromicPaths;
     }
 
-    private void calculatePalindromPaths(TreeNode root, int[] frequency) {
+    private void calculatePalindromPaths(TreeNode root) {
         int num = root.val;
         //updating the frequency of the number
         frequency[num] += 1;
@@ -20,8 +22,8 @@ public class Solution {
             //base case
             boolean found1OddFrequency = false;
             boolean isPalindrom = true;
-            for (int i = 1; i < 10; i++) {
-                if (frequency[i] % 2 != 0) {
+            for (int numb : frequency) {
+                if (numb % 2 != 0) {
                     if (found1OddFrequency) {
                         isPalindrom = false;
                         break;
@@ -35,10 +37,10 @@ public class Solution {
         } else {
             //middle element
             if (root.left != null) {
-                calculatePalindromPaths(root.left, frequency);
+                calculatePalindromPaths(root.left);
             }
             if (root.right != null) {
-                calculatePalindromPaths(root.right, frequency);
+                calculatePalindromPaths(root.right);
             }
         }
         //clearing the frequencies at the end
