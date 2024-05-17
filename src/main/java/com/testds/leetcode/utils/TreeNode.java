@@ -35,4 +35,14 @@ public class TreeNode {
         }
         return null;
     }
+
+    public static boolean treesAreEqual(TreeNode root1, TreeNode root2) {
+        if ((root1 != null && root2 == null) || (root1 == null && root2 != null))
+            return false;
+        if (root1 == null && root2 == null)
+            return true;
+        if (root1.val != root2.val)
+            return false;
+        return treesAreEqual(root1.left, root2.left) && treesAreEqual(root1.right, root2.right);
+    }
 }
