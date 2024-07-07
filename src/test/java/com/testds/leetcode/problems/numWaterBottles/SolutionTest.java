@@ -40,7 +40,7 @@ public class SolutionTest extends TestCase {
 
     @org.junit.Test
     public void testNumWaterBottles() {
-        int actualResult = solution.numWaterBottles(numExchange, numBottles);
+        int actualResult = solution.numWaterBottles(numBottles, numExchange);
         assertEquals(expectedResult, actualResult);
     }
 
