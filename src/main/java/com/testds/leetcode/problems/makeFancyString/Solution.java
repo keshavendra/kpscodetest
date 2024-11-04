@@ -5,7 +5,7 @@ public class Solution {
 
     public String makeFancyString(String s) {
         StringBuilder sb = new StringBuilder();
-        char c = ' ';
+        char c;
         for (int i = 0; i < s.length(); i++) {
             c = s.charAt(i);
             if (sb.length() >= 2) {
