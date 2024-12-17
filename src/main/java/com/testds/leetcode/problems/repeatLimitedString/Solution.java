@@ -44,6 +44,7 @@ public class Solution {
             if (c == prev) {
                 c = queue.poll();
                 sb.append(c);
+                assert c != null;
                 letters[c - 'a']--;
                 if (letters[c - 'a'] > 0) {
                     queue.add(c);
