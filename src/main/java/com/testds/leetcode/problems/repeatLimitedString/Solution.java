@@ -6,15 +6,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Solution {
-    public static void main(String[] args) {
-        String s = "cczazcc";
-        int repeatLimit = 3;
-        System.out.println(new Solution().repeatLimitedString(s, repeatLimit));
-        s = "aababab";
-        repeatLimit = 2;
-        System.out.println(new Solution().repeatLimitedString(s, repeatLimit));
-    }
-
     public String repeatLimitedString(String s, int repeatLimit) {
         int[] letters = new int[26];
 
@@ -30,12 +21,13 @@ public class Solution {
             }
         }
 
-        Character prev = null;
+        char prev = ' ', c;
+        int min;
         StringBuilder sb = new StringBuilder();
 
         while (!queue.isEmpty()) {
 
-            Character c = queue.poll();
+            c = queue.poll();
 
             if (c == prev && queue.isEmpty()) {
                 break;
@@ -44,27 +36,22 @@ public class Solution {
             if (c == prev) {
                 c = queue.poll();
                 sb.append(c);
-                assert c != null;
                 letters[c - 'a']--;
                 if (letters[c - 'a'] > 0) {
                     queue.add(c);
                 }
                 queue.add(prev);
-                prev = c;
-                continue;
+            } else {
+                min = Math.min(letters[c - 'a'], repeatLimit);
+                letters[c - 'a'] -= min;
+                while (min > 0) {
+                    sb.append(c);
+                    min--;
+                }
+                if (letters[c - 'a'] > 0) {
+                    queue.add(c);
+                }
             }
-
-            int min = Math.min(letters[c - 'a'], repeatLimit);
-            letters[c - 'a'] -= min;
-            while (min > 0) {
-                sb.append(c);
-                min--;
-            }
-
-            if (letters[c - 'a'] > 0) {
-                queue.add(c);
-            }
-
             prev = c;
         }
         return sb.toString();
