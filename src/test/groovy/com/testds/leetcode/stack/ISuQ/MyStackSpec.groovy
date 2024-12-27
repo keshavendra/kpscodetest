@@ -3,8 +3,8 @@ package com.testds.leetcode.stack.ISuQ
 import spock.lang.Specification
 
 class MyStackSpec extends Specification {
-    MyStack stack
-    int[] listOfElements
+    MyStack<Integer> stack
+    Integer[] listOfElements
 
     def setup() {
         stack = Spy(MyStack)
@@ -12,7 +12,7 @@ class MyStackSpec extends Specification {
 
     def "Test push operation"() {
         given:
-        listOfElements = new int[3]
+        listOfElements = new Integer[3]
         listOfElements[0] = 1
         listOfElements[1] = 2
         listOfElements[2] = 3
@@ -28,11 +28,11 @@ class MyStackSpec extends Specification {
 
     def "Test pop operation"() {
         given:
-        listOfElements = new int[3]
+        listOfElements = new Integer[3]
         listOfElements[0] = 1
         listOfElements[1] = 2
         listOfElements[2] = 3
-        int popValue
+        Integer popValue
 
         when:
         for(int i=0; i<listOfElements.length;i++)
@@ -47,11 +47,11 @@ class MyStackSpec extends Specification {
 
     def "Test top operation"() {
         given:
-        listOfElements = new int[3]
+        listOfElements = new Integer[3]
         listOfElements[0] = 1
         listOfElements[1] = 2
         listOfElements[2] = 3
-        int topValue
+        Integer topValue
 
         when:
         for(int i=0; i<listOfElements.length;i++)
@@ -67,7 +67,7 @@ class MyStackSpec extends Specification {
 
     def "Test empty operation"() {
         given:
-        listOfElements = new int[3]
+        listOfElements = new Integer[3]
         listOfElements[0] = 1
         listOfElements[1] = 2
         listOfElements[2] = 3
