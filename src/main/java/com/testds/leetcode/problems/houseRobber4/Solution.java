@@ -7,32 +7,28 @@ import java.util.OptionalInt;
 public class Solution {
 
     public int minCapability(int[] nums, int k) {
-        // Store the maximum nums value in maxReward.
-        int minReward = 1,maxReward = 1;
-        OptionalInt optional = Arrays.stream(nums).max();
-        if (optional.isPresent()) {
-            minReward = optional.getAsInt();
+        OptionalInt max = Arrays.stream(nums).max();
+        int minCap = 1, maxCap = 0, minimum = 0;
+        if(max.isPresent()) {
+            maxCap = max.getAsInt();
         }
-        int totalHouses = nums.length;
-
-        // Use binary search to find the minimum reward possible.
-        while (minReward < maxReward) {
-            int midReward = (minReward + maxReward) / 2;
-            int possibleThefts = 0;
-
-            for (int index = 0; index < totalHouses; ++index) {
-                if (nums[index] <= midReward) {
-                    possibleThefts += 1;
-                    index++; // Skip the next house to maintain the
-                    // non-adjacent condition
+        while (minCap <= maxCap) {
+            int midCap = (maxCap + minCap) / 2;
+            int count = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] <= midCap) {
+                    count++;
+                    i++;
                 }
             }
-
-            if (possibleThefts >= k) maxReward = midReward;
-            else minReward = midReward + 1;
+            if (count >= k) {
+                minimum = midCap;
+                maxCap = midCap - 1;
+            } else {
+                minCap = midCap + 1;
+            }
         }
-
-        return minReward;
+        return minimum;
     }
 
 }
