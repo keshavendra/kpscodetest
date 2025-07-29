@@ -2,9 +2,17 @@
 package com.testds.leetcode.problems.smallestSubArraysWithMaxBitwiseOR;
 
 import java.util.Arrays;
+import java.util.function.BiFunction;
 import java.util.stream.IntStream;
 
 public class Solution {
+
+    final BiFunction<int[], Integer, Integer> maxDiffInArray = (setBits, index) ->
+            Arrays.stream(setBits)
+                    .filter(num -> num != 0)
+                    .max()
+                    .orElse(index) - index + 1;
+
     public int[] smallestSubarrays(int[] nums) {
         final int[] result = new int[nums.length];
         int[] setBits = new int[32];
@@ -12,16 +20,9 @@ public class Solution {
                 .map(index -> nums.length - index - 1)
                 .forEach(index -> {
                     setTheBits(nums[index], setBits, index);
-                    result[index] = findMaxDiffInArray(setBits, index);
+                    result[index] = maxDiffInArray.apply(setBits, index);
                 });
         return result;
-    }
-
-    private int findMaxDiffInArray(int[] setBits, int index) {
-        return Arrays.stream(setBits)
-                .filter(num -> num != 0)
-                .max()
-                .orElse(index) - index + 1;
     }
 
     private void setTheBits(int num, int[] setBits, int index) {
