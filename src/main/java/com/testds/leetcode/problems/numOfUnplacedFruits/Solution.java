@@ -5,7 +5,7 @@ public class Solution {
 
     public int numOfUnplacedFruits(int[] fruits, int[] baskets) {
         int placed = 0;
-        int indexFruits = 0, indexBaskets = 0;
+        int indexFruits = 0, indexBaskets;
 
         for (; indexFruits < fruits.length; indexFruits++) {
             for (indexBaskets = 0; indexBaskets < baskets.length; indexBaskets++) {
