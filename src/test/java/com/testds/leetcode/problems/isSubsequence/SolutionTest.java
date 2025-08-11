@@ -1,112 +1,60 @@
 package com.testds.leetcode.problems.isSubsequence;
 
+import junit.framework.Test;
+import junit.framework.TestSuite;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
 public class SolutionTest {
     private Solution solution;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         solution = new Solution();
     }
 
-    @Test
-    public void testIsSubsequence_EmptyString_ReturnsTrue() {
-        // Arrange
-        String s = "";
-        String t = "abc";
+    @Parameterized.Parameter
+    public String s;
 
-        // Act
-        boolean result = solution.isSubsequence(s, t);
+    @Parameterized.Parameter(1)
+    public String t;
 
-        // Assert
-        Assert.assertTrue(result);
+    @Parameterized.Parameter(2)
+    public boolean expected;
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(
+                new Object[][]{
+                        {"", "abc", true},
+                        {"a", "abc", true},
+                        {"d", "abc", false},
+                        {"ab", "ahbgdc", true},
+                        {"axc", "ahbgdc", false},
+                        {"abcd", "abc", false}
+                }
+        );
     }
 
-    @Test
-    public void testIsSubsequence_SingleCharacterString_ReturnsTrueIfFoundInT() {
-        // Arrange
-        String s = "a";
-        String t = "abc";
-
-        // Act
-        boolean result = solution.isSubsequence(s, t);
-
-        // Assert
-        Assert.assertTrue(result);
+    public static Test suite() {
+        return new TestSuite(Solution.class);
     }
 
-    @Test
-    public void testIsSubsequence_SingleCharacterString_ReturnsFalseIfNotFoundInT() {
-        // Arrange
-        String s = "d";
-        String t = "abc";
-
-        // Act
-        boolean result = solution.isSubsequence(s, t);
-
-        // Assert
-        Assert.assertFalse(result);
+    @org.junit.Test
+    public void testIsSubsequence() {
+        boolean actual = solution.isSubsequence(s, t);
+        Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void testIsSubsequence_MultipleCharactersString_ReturnsTrueIfAllCharactersFoundInOrder() {
-        // Arrange
-        String s = "ab";
-        String t = "ahbgdc";
-
-        // Act
-        boolean result = solution.isSubsequence(s, t);
-
-        // Assert
-        Assert.assertTrue(result);
-    }
-
-    @Test
-    public void testIsSubsequence_MultipleCharactersString_ReturnsFalseIfNotAllCharactersFoundInOrder() {
-        // Arrange
-        String s = "axc";
-        String t = "ahbgdc";
-
-        // Act
-        boolean result = solution.isSubsequence(s, t);
-
-        // Assert
-        Assert.assertFalse(result);
-    }
-
-    @Test
-    public void testIsSubsequence_LongerStringThanT_ReturnsFalse() {
-        // Arrange
-        String s = "abcd";
-        String t = "abc";
-
-        // Act
-        boolean result = solution.isSubsequence(s, t);
-
-        // Assert
-        Assert.assertFalse(result);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testIsSubsequence_NullInput_ThrowsNullPointerException() {
-        // Arrange
-        String s = null;
-        String t = "abc";
-
-        // Act
-        solution.isSubsequence(s, t);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testIsSubsequence_TNull_ThrowsNullPointerException() {
-        // Arrange
-        String s = "abc";
-        String t = null;
-
-        // Act
-        solution.isSubsequence(s, t);
+    @After
+    public void tearDown() {
+        solution = null;
     }
 }
