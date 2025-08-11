@@ -16,11 +16,10 @@ public class Solution {
         List<Integer> arr = getNumsArrays(n);
         int[] res = new int[queries.length];
         Arrays.fill(res, 1);
-        IntStream.range(0, queries.length).forEach(i -> {
-            IntStream.rangeClosed(queries[i][0], queries[i][1]).forEach(j -> {
-                res[i] = (int) ((res[i] * (long) arr.get(j)) % MODULO);
-            });
-        });
+        IntStream.range(0, queries.length)
+                .forEach(i ->
+                        IntStream.rangeClosed(queries[i][0], queries[i][1])
+                                .forEach(j -> res[i] = (int) ((res[i] * (long) arr.get(j)) % MODULO)));
         return res;
     }
 
