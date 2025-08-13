@@ -18,7 +18,7 @@ public class SolutionTest {
     private Solution solution;
 
 
-    @Parameterized.Parameter(0)
+    @Parameterized.Parameter()
     public int[] height;
 
     @Parameterized.Parameter(1)
