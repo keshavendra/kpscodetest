@@ -1,4 +1,4 @@
-package com.testds.leetcode.problems.max69Number
+package com.testds.leetcode.problems.maxNumber69
 
 import spock.lang.Specification
 import spock.lang.Unroll

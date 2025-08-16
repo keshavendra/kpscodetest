@@ -1,6 +1,5 @@
-package com.testds.leetcode.problems.max69number;
+package com.testds.leetcode.problems.maxNumber69;
 
-import com.testds.leetcode.problems.max69Number.Solution;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

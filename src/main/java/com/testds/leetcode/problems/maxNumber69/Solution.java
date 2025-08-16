@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/maximum-69-number/
-package com.testds.leetcode.problems.max69Number;
+package com.testds.leetcode.problems.maxNumber69;
 
 public class Solution {
 
