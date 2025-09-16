@@ -5,65 +5,29 @@ import java.util.*;
 
 public class Solution {
 
-    Map<Integer, Map<Integer, Integer>> GCDMap = new HashMap<>();
-
     public List<Integer> replaceNonCoprimes(int[] nums) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(nums[0]);
-        int num;
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.offerLast(nums[0]);
+
         for (int i = 1; i < nums.length; i++) {
-            num = nums[i];
-            while (!stack.isEmpty() && num > 1) {
-                int GCD = gcd(num, stack.peek());
-                if (GCD == 1) {
+            int num = nums[i];
+
+            while (!deque.isEmpty() && num > 1) {
+                int top = deque.peekLast();
+                int gcd = getGcd(top, num);
+
+                if (gcd == 1) {
                     break;
                 } else {
-                    num = LCM(GCD, num, stack.pop());
+                    num = getLcm(gcd, num, top);
+                    deque.pollLast();
                 }
             }
-            stack.push(num);
-        }
-        return new ArrayList<>(stack);
-    }
 
-    private int gcd(int a, int b) {
-
-        if (a > b) {
-            if (GCDMap.containsKey(a)
-                    && GCDMap.get(a).containsKey(b)) {
-                return GCDMap.get(a).get(b);
-            }
-        } else {
-            if (GCDMap.containsKey(b)
-                    && GCDMap.get(b).containsKey(a)) {
-                return GCDMap.get(b).get(a);
-            }
+            deque.offerLast(num);
         }
 
-        // Everything divides 0
-        if (a == 0) {
-            return putAndReturnValue(b, a, b);
-        }
-        if (b == 0) {
-            return putAndReturnValue(a, b, a);
-        }
-
-        // Base case
-        if (a == b) {
-            return putAndReturnValue(a, b, a);
-        }
-
-        // a is greater
-        int big, small;
-        if (a > b) {
-            big = a;
-            small = b;
-        } else {
-            big = b;
-            small = a;
-        }
-
-        return putAndReturnValue(big, small, getGcd(big, small));
+        return new ArrayList<>(deque);
     }
 
     private int getGcd(int a, int b) {
@@ -75,15 +39,7 @@ public class Solution {
         return a;
     }
 
-    private int putAndReturnValue(int big, int small, int gcd) {
-        if (!GCDMap.containsKey(big)) {
-            GCDMap.put(big, new HashMap<>());
-        }
-        GCDMap.get(big).put(small, gcd);
-        return gcd;
-    }
-
-    private int LCM(int gcd, int a, int b) {
+    private int getLcm(int gcd, int a, int b) {
         return (int) (((long) a * b) / gcd);
     }
 }
