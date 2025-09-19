@@ -6,12 +6,6 @@ import spock.lang.Specification
 
 class TaskManagerSpec extends Specification {
 
-    Solution solution
-
-    def setup() {
-        solution = new Solution()
-    }
-
     def "Test TaskManager"() {
         given:
         TaskManager taskManager = null
