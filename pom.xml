@@ -34,6 +34,17 @@
             <scope>test</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>[,4.11.0]</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
@@ -67,7 +78,9 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.6</version>
                     <configuration>
-                        <argLine>${jaCoCoArgLine} -Djava.net.preferIPv4Addresses=true -Duser.timezone=America/Los_Angeles</argLine>
+                        <argLine>${jaCoCoArgLine} -Djava.net.preferIPv4Addresses=true
+                            -Duser.timezone=America/Los_Angeles
+                        </argLine>
                         <useFile>true</useFile>
                         <includes>
                             <include>**/*Spec.*</include>
