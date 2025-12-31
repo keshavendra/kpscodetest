@@ -79,7 +79,6 @@
                     <version>2.6</version>
                     <configuration>
                         <argLine>${jaCoCoArgLine} -Djava.net.preferIPv4Addresses=true
-                            -Duser.timezone=America/Los_Angeles
                         </argLine>
                         <useFile>true</useFile>
                         <includes>
