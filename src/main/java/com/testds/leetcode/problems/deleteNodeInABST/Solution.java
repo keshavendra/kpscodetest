@@ -8,7 +8,7 @@ public class Solution {
         if (root == null) {
             return null;
         }
-        TreeNode[] nodeAndParent = findNodeAndParentToBeDeleted(root, key, null);
+        TreeNode[] nodeAndParent = findNodeAndParentToBeDeleted(root, key);
         if (nodeAndParent == null)
             return root;
 
@@ -60,21 +60,32 @@ public class Solution {
     }
 
     private TreeNode[] findTheInOrderPredecessorAndParent(TreeNode child, TreeNode parent) {
-        if (child == null)
+        if (child == null) {
             return null;
-        if (child.right == null)
-            return new TreeNode[]{child, parent};
-        return findTheInOrderPredecessorAndParent(child.right, child);
+        }
+        TreeNode current = child;
+        TreeNode predParent = parent;
+        while (current.right != null) {
+            predParent = current;
+            current = current.right;
+        }
+        return new TreeNode[]{current, predParent};
     }
 
-    private TreeNode[] findNodeAndParentToBeDeleted(TreeNode root, int key, TreeNode parent) {
-        if (root == null)
-            return null;
-        if (root.val == key) {
-            return new TreeNode[]{root, parent};
+    private TreeNode[] findNodeAndParentToBeDeleted(TreeNode root, int key) {
+        TreeNode current = root;
+        TreeNode currParent = null;
+        while (current != null) {
+            if (current.val == key) {
+                return new TreeNode[]{current, currParent};
+            }
+            currParent = current;
+            if (key < current.val) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
         }
-        if (key < root.val)
-            return findNodeAndParentToBeDeleted(root.left, key, root);
-        return findNodeAndParentToBeDeleted(root.right, key, root);
+        return null;
     }
 }
