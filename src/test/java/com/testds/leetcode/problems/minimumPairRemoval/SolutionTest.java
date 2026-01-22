@@ -25,7 +25,8 @@ public class SolutionTest extends TestCase {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {new int[]{5, 2, 3, 1}, 2},
-                {new int[]{1, 2, 2}, 0}
+                {new int[]{1, 2, 2}, 0},
+                {new int[]{3, 6, 4, -6, 2, -4, 5, -7, -3, 6, 3, -4}, 10}
         });
     }
 

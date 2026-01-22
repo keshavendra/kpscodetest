@@ -1,40 +1,35 @@
 //https://leetcode.com/problems/minimum-pair-removal-to-sort-array-i/
 package com.testds.leetcode.problems.minimumPairRemoval;
 
-import java.util.TreeMap;
 
 public class Solution {
     public int minimumPairRemoval(int[] nums) {
         int numOfOperations = 0, lastIndex = nums.length - 1;
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        while (!isSorted(nums, lastIndex)) {
-            for (int i = lastIndex; i > 0; i--) {
-                map.put(nums[i] + nums[i - 1], i);
-                if (map.size() > 1) {
-                    map.remove(map.lastKey());
-                }
-            }
-            adjustArray(nums, map.firstEntry().getValue(), lastIndex);
-            map.clear();
+        while (checkAndAdjustArray(nums, lastIndex)) {
             lastIndex--;
             numOfOperations++;
         }
         return numOfOperations;
     }
 
-    private void adjustArray(int[] nums, Integer index, int lastIndex) {
-        nums[index - 1] += nums[index];
-        for (int i = index; i < lastIndex; i++) {
-            nums[i] = nums[i + 1];
-        }
-    }
-
-    private boolean isSorted(int[] nums, int lastIndex) {
+    private boolean checkAndAdjustArray(int[] nums, int lastIndex) {
+        boolean required = false;
+        int min = Integer.MAX_VALUE, index = lastIndex;
         for (int i = lastIndex; i > 0; i--) {
             if (nums[i] < nums[i - 1]) {
-                return false;
+                required = true;
+            }
+            if (min >= nums[i] + nums[i - 1]) {
+                min = nums[i] + nums[i - 1];
+                index = i;
             }
         }
-        return true;
+        if (required) {
+            nums[index - 1] += nums[index];
+            for (; index < lastIndex; index++) {
+                nums[index] = nums[index + 1];
+            }
+        }
+        return required;
     }
 }
