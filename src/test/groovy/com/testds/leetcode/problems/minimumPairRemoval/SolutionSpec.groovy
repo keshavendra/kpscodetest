@@ -18,9 +18,10 @@ class SolutionSpec extends Specification {
         then:
         expectedResult == actualResult
         where:
-        nums         | expectedResult
-        [5, 2, 3, 1] | 2
-        [1, 2, 2]    | 0
+        nums                                      | expectedResult
+        [5, 2, 3, 1]                              | 2
+        [1, 2, 2]                                 | 0
+        [3, 6, 4, -6, 2, -4, 5, -7, -3, 6, 3, -4] | 10
     }
 
     def cleanup() {
