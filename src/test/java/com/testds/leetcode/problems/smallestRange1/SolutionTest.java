@@ -22,7 +22,7 @@ public class SolutionTest extends TestCase {
     @Parameterized.Parameter(1)
     public int k;
 
-    @Parameterized.Parameter
+    @Parameterized.Parameter(2)
     public int expectedResult;
 
     @Parameterized.Parameters
