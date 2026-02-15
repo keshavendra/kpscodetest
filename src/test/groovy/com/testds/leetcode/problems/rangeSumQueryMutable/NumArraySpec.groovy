@@ -16,11 +16,11 @@ class NumArraySpec extends Specification {
                 case "NumArray":
                     numArrayObject = new NumArray(inputValue[i][0] as int[])
                     res[i] = null
-                    break;
+                    break
                 case "sumRange":
                     assert numArrayObject != null
                     res[i] = numArrayObject.sumRange(inputValue[i][0], inputValue[i][1])
-                    break;
+                    break
                 case "update":
                     assert numArrayObject != null
                     numArrayObject.update(inputValue[i][0], inputValue[i][1])
