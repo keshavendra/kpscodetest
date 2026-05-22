@@ -11,8 +11,8 @@ public class SerializationTest {
 
     public static void main(String[] args) {
         String directory = "./";
-        String cartId = "";
-        ShoppingCart shoppingCart = null;
+        String cartId;
+        ShoppingCart shoppingCart;
         System.out.println("Enter cart id");
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             cartId = br.readLine();
@@ -36,7 +36,7 @@ public class SerializationTest {
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(shoppingCart);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Exception occurred while writing shopping cart " + cartFileName);
             System.exit(-1);
         }
         System.out.println("Shopping cart " + cartFileName + " contains " + shoppingCart.getCartSize());
