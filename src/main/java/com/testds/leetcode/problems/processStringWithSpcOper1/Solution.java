@@ -7,7 +7,7 @@ public class Solution {
         for (char ch : s.toCharArray()) {
             switch (ch) {
                 case '*':
-                    if (sb.length() != 0) {
+                    if (!sb.isEmpty()) {
                         sb.deleteCharAt(sb.length() - 1);
                     }
                     break;
