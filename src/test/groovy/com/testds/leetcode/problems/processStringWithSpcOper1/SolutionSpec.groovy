@@ -4,7 +4,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import spock.lang.Specification
 
-@RunWith(Parameterized.class)
 class SolutionSpec extends Specification {
 
     Solution solution
